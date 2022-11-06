@@ -13,12 +13,13 @@ function App() {
       element: <Main />,
       children: [
         {
-          path: '/home',
+          path: '/',
           element: <Home />
         },
         {
           path: '/users',
-          element: <Users />
+          element: <Users />,
+          loader: () => fetch('http://localhost:5000/users')
         }
       ]
     }

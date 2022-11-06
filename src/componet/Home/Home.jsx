@@ -7,6 +7,21 @@ const Home = () => {
 
     const handleSubmit = event => {
         event.preventDefault();
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    alert('your data collection added')
+                    event.target.reset()
+                }
+
+            })
     }
 
     const handleBlur = event => {
@@ -15,7 +30,6 @@ const Home = () => {
         const newUser = { ...user };
         newUser[form] = value;
         setUser(newUser)
-        console.log(newUser);
     }
 
     return (
